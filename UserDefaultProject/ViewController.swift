@@ -1,4 +1,4 @@
-//
+    //
 //  ViewController.swift
 //  UserDefaultProject
 //
@@ -9,12 +9,48 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var label: UILabel!
+    
+    // 0: 赤, 1: 青, 2: 黄
+    var colorNumber = 0
+    
+    fileprivate func changeBgColor() {
+        switch colorNumber {
+        case 0:
+            view.backgroundColor = .red
+        case 1:
+            view.backgroundColor = .blue
+        case 2:
+            view.backgroundColor = .yellow
+        default:
+            view.backgroundColor = .white
+        }
+        
+        switch colorNumber {
+        case 0:
+            label.text = "赤"
+        case 1:
+            label.text = "青"
+        case 2:
+            label.text = "黄"
+        default:
+            label.text = "白"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        changeBgColor()
     }
 
-
+    @IBAction func didClickButton(_ sender: UIButton) {
+        colorNumber = (colorNumber + 1) % 3
+        changeBgColor()
+        
+    }
+    
 }
 
