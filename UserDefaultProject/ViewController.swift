@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     // 0: 赤, 1: 青, 2: 黄
     var colorNumber = 0
     
-    fileprivate func changeBgColor(color: Int) {
-        switch color {
+    fileprivate func changeBgColor() {
+        switch colorNumber {
         case 0:
             view.backgroundColor = .red
         case 1:
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             view.backgroundColor = .white
         }
         
-        switch color {
+        switch colorNumber {
         case 0:
             label.text = "赤"
         case 1:
@@ -44,22 +44,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let userDefaults = UserDefaults.standard
-        userDefaults.set(colorNumber, forKey: "colorNum")
-        let savedNumber = userDefaults.integer(forKey: "colorNum")
-        print(savedNumber)
-        changeBgColor(color: savedNumber)
+        colorNumber = userDefaults.integer(forKey: "colorNumber")
+//        print(savedNumber)
+        changeBgColor()
     }
 
     @IBAction func didClickButton(_ sender: UIButton) {
         colorNumber = (colorNumber + 1) % 3
-        changeBgColor(color: colorNumber)
+        changeBgColor()
         
         let userDefaults = UserDefaults.standard
         
-        userDefaults.set(colorNumber, forKey: "colorNum")
+        userDefaults.set(colorNumber, forKey: "colorNumber")
         
-        let savedNumber = userDefaults.integer(forKey: "colorNum")
-        print(savedNumber)
+//        let savedNumber = userDefaults.integer(forKey: "colorNum")
+//        print(savedNumber)
     }
     
 }
